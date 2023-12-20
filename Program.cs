@@ -25,7 +25,7 @@ namespace Heist
             {
                 Name = "Coding Genius",
                 SkillLevel = 88,
-                PercentageCut = 45,
+                PercentageCut = 29,
                 id = 1
             };
             Muscle MuscleGuy = new Muscle
@@ -39,7 +39,7 @@ namespace Heist
             {
                 Name = "Loqq Pickins",
                 SkillLevel = 83,
-                PercentageCut = 38,
+                PercentageCut = 31,
                 id = 3
             };
             Hacker OldSchoolHacker = new Hacker
@@ -53,14 +53,14 @@ namespace Heist
             {
                 Name = "Not Really All That Tough But Thinks He Is",
                 SkillLevel = 22,
-                PercentageCut = 90,
+                PercentageCut = 65,
                 id = 5
             };
             LockSpecialist MacGyver = new LockSpecialist
             {
                 Name = "Fuckin MacGyver Dude",
                 SkillLevel = 99,
-                PercentageCut = 85,
+                PercentageCut = 69,
                 id = 6
             };
             List<IRobber> rolodex = new List<IRobber>() {
@@ -203,6 +203,15 @@ namespace Heist
                 **********************************************
                 ");
             }
+            Console.WriteLine();
+            Console.WriteLine("Let's get your crew together. Look through the robber profiles above, and enter the ID number of a robber you want to add to your crew -->   ");
+            Console.WriteLine();
+            int crewID = Convert.ToInt32(Console.ReadLine());
+            List<IRobber> crew = new List<IRobber>();
+            crew.Add(rolodex.ElementAt(crewID - 1));
+            Console.WriteLine();
+            Console.WriteLine($"OK great you have {crew.Count} members in your crew so far. Let's keep going.");
+            Console.WriteLine();
         }
 
         }
