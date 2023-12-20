@@ -15,6 +15,12 @@ namespace Heist
                 SecurityGuardScore = new Random().Next(100) + 1,
                 CashOnHand = new Random().Next(49999, 1000000) + 1
             };
+
+            Dictionary<string, int> bankRatings = new Dictionary<string, int>();
+            bankRatings.Add("Alarm", heistVictim.AlarmScore);
+            bankRatings.Add("Vault", heistVictim.VaultScore);
+            bankRatings.Add("Security Guards", heistVictim.SecurityGuardScore);
+            var sortedBankRatings = bankRatings.OrderBy(pair => pair.Value);
             Hacker CodingWiz = new Hacker
             {
                 Name = "Coding Genius",
@@ -65,12 +71,12 @@ namespace Heist
             
             **NAME**: The Doofy Bank of All These Rich MFs
 
-            **ALARM SYSTEM RATING**: {heistVictim.AlarmScore}
-            **VAULT SECURITY RATING**: {heistVictim.VaultScore}
-            **TOTAL SECURITY GUARDS**: {heistVictim.SecurityGuardScore}
+            **MOST SECURE AND INTIMIDATING SECURITY SYSTEM**: {sortedBankRatings.ElementAt(2).Key}
+            **LEAST SECURE AND EASIEST SYSTEM TO MESS UP**: {sortedBankRatings.ElementAt(0).Key}
             
             **TOTAL CASH ON HAND**: ${heistVictim.CashOnHand.ToString("N0")}
             ");
+
             void PickTeam()
             {
                 bool ending = false;
