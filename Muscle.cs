@@ -5,6 +5,8 @@ namespace Heist
         public string Name { get; set; }
         public int SkillLevel { get; set; }
         public int PercentageCut { get; set; }
+        public string SpecialtyName { get ;} = "Muscle";
+        public string SpecialtyDesc { get; } = "pullin up and using them hands like MF rocky balboa";  
         public void PerformSkill(Bank bank)
         {
             Console.Write($"{Name} started kicking security butts. Their buttkicking skill level is {SkillLevel}, so the bank's security guard total has reduced {SkillLevel}. The bank now only has {bank.SecurityGuardScore - SkillLevel} security guards.");

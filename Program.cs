@@ -9,6 +9,12 @@ namespace Heist
     {
         static void Main (string[] args)
         {
+            Bank heistVictim = new Bank() {
+                AlarmScore = new Random().Next(100) + 1,
+                VaultScore = new Random().Next(100) + 1,
+                SecurityGuardScore = new Random().Next(100) + 1,
+                CashOnHand = new Random().Next(49999, 1000000) + 1
+            };
             Hacker CodingWiz = new Hacker
             {
                 Name = "Coding Genius",
@@ -54,7 +60,17 @@ namespace Heist
             PickTeam();
             Console.WriteLine();
             Console.WriteLine($"All done entering criminals for your little rolodex, huh? Already let's check the numbers again - looks like you've got {rolodex.Count} criminals in here at the moment.");
+            Console.WriteLine();
+            Console.WriteLine($@"Alright, let's look at the bank you're trying to rob:
+            
+            **NAME**: The Doofy Bank of All These Rich MFs
 
+            **ALARM SYSTEM RATING**: {heistVictim.AlarmScore}
+            **VAULT SECURITY RATING**: {heistVictim.VaultScore}
+            **TOTAL SECURITY GUARDS**: {heistVictim.SecurityGuardScore}
+            
+            **TOTAL CASH ON HAND**: ${heistVictim.CashOnHand.ToString("N0")}
+            ");
             void PickTeam()
             {
                 bool ending = false;
@@ -69,11 +85,11 @@ namespace Heist
                         break;
                     }
                     Console.WriteLine();
-                    Console.WriteLine($@"OK great, got it, ${memberName}. What is their specialty?
+                    Console.WriteLine($@"OK great, got it, {memberName}. What is their specialty?
                     - For HACKER (disables alarms) - Enter 1
                     - For MUSCLE (disarms security guards) - Enter 2
                     - For LOCK SPECIALIST (cracks vault) - Enter 3
-                    (If you don't select one of these three options, your new criminal will be defaulted to MUSCLE specialty, because that's the only role we can trust them with if you can't follow directions)
+                    (If you don't select one of these three options, your new criminal will be defaulted to MUSCLE specialty)
                     ");
                     Console.WriteLine();
                     int memberSpecialty = Convert.ToInt32(Console.ReadLine());
@@ -106,7 +122,7 @@ namespace Heist
                     }
                     Console.WriteLine();
                     Console.WriteLine();
-                    Console.WriteLine($"OK, so this {memberName}.... what would you rate their overall skill at their given specialty? Any positive whole number will work.:  ");
+                    Console.WriteLine($"OK, so this {memberName}.... what would you rate their overall skill at {rolodex[rolodex.Count - 1].SpecialtyDesc}? Any positive whole number will work.:  ");
                     int memberSkill = 0;
                     try
                     {
@@ -118,7 +134,7 @@ namespace Heist
                     }
                     rolodex[rolodex.Count - 1].SkillLevel = memberSkill;
                     Console.WriteLine();
-                    Console.WriteLine($"OK so that's a {memberSkill} for {memberName}'s skill. Noted. Seems low. But noted.");
+                    Console.WriteLine($"OK so that's a {memberSkill} for {memberName}'s {rolodex[rolodex.Count - 1].SpecialtyName} skill. Noted. Seems low. But noted.");
                     Console.WriteLine();
                     Console.WriteLine($"Another quick one about this {memberName} friend of yours.... What percentage cut are they going to demand from this heist? Enter 0 to 100 (if you don't, their cut will default to 5%):  ");
                     int memberCut = 0;
