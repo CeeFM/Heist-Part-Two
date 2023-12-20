@@ -93,36 +93,23 @@ namespace Heist
                     ");
                     Console.WriteLine();
                     int memberSpecialty = Convert.ToInt32(Console.ReadLine());
+                    string memberSpecialtyName = "";
                     if (memberSpecialty == 1)
                     {
-                        Hacker newMember = new Hacker() {
-                            Name = memberName,
-                            SkillLevel = 0,
-                            PercentageCut = 0
-                        };
-                        rolodex.Add(newMember);
+                        memberSpecialtyName = "hackin";
                     }
                     else if (memberSpecialty == 3)
                     {
-                        LockSpecialist newMember = new LockSpecialist() {
-                            Name = memberName,
-                            SkillLevel = 0,
-                            PercentageCut = 0
-                        };
-                        rolodex.Add(newMember);
+                        memberSpecialtyName = "lock pickin and vault gittin in";
                     }
                     else
                     {
-                        Muscle newMember = new Muscle() {
-                            Name = memberName,
-                            SkillLevel = 0,
-                            PercentageCut = 0
-                        };
-                        rolodex.Add(newMember);
+                        memberSpecialtyName = "pullin up on them MF security guards like MF rocky balboa";
                     }
+
                     Console.WriteLine();
                     Console.WriteLine();
-                    Console.WriteLine($"OK, so this {memberName}.... what would you rate their overall skill at {rolodex[rolodex.Count - 1].SpecialtyDesc}? Any positive whole number will work.:  ");
+                    Console.WriteLine($"OK, so this {memberName}.... what would you rate their overall skill at {memberSpecialtyName}? Any positive whole number will work.:  ");
                     int memberSkill = 0;
                     try
                     {
@@ -132,9 +119,8 @@ namespace Heist
                     {
                     memberSkill = 0;
                     }
-                    rolodex[rolodex.Count - 1].SkillLevel = memberSkill;
                     Console.WriteLine();
-                    Console.WriteLine($"OK so that's a {memberSkill} for {memberName}'s {rolodex[rolodex.Count - 1].SpecialtyName} skill. Noted. Seems low. But noted.");
+                    Console.WriteLine($"OK so that's a {memberSkill} for {memberName}'s {memberSpecialtyName} skill. Noted. Seems low. But noted.");
                     Console.WriteLine();
                     Console.WriteLine($"Another quick one about this {memberName} friend of yours.... What percentage cut are they going to demand from this heist? Enter 0 to 100 (if you don't, their cut will default to 5%):  ");
                     int memberCut = 0;
@@ -146,10 +132,36 @@ namespace Heist
                     {
                     memberCut = 5;
                     }
-                    rolodex[rolodex.Count - 1].PercentageCut = memberCut;
                     Console.WriteLine();
                     Console.WriteLine($"Great, so that's a {memberCut}% cut for {memberName}. I think we should just steal their money and kill them after the heist is over, but that's just me, a brutally tough criminal computer. So let's move on!");
                     Console.WriteLine();
+                    if (memberSpecialty == 1)
+                    {
+                        Hacker newMember = new Hacker() {
+                            Name = memberName,
+                            SkillLevel = memberSkill,
+                            PercentageCut = memberCut
+                        };
+                        rolodex.Add(newMember);
+                    }
+                    else if (memberSpecialty == 3)
+                    {
+                        LockSpecialist newMember = new LockSpecialist() {
+                            Name = memberName,
+                            SkillLevel = memberSkill,
+                            PercentageCut = memberCut
+                        };
+                        rolodex.Add(newMember);
+                    }
+                    else
+                    {
+                        Muscle newMember = new Muscle() {
+                            Name = memberName,
+                            SkillLevel = memberSkill,
+                            PercentageCut = memberCut
+                        };
+                        rolodex.Add(newMember);
+                    }
                 }
             }
 
