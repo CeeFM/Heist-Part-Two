@@ -25,37 +25,43 @@ namespace Heist
             {
                 Name = "Coding Genius",
                 SkillLevel = 88,
-                PercentageCut = 45
+                PercentageCut = 45,
+                id = 1
             };
             Muscle MuscleGuy = new Muscle
             {
                 Name = "Max Power",
                 SkillLevel = 79,
-                PercentageCut = 25
+                PercentageCut = 25,
+                id = 2
             };
             LockSpecialist LockGuy = new LockSpecialist
             {
                 Name = "Loqq Pickins",
                 SkillLevel = 83,
-                PercentageCut = 38
+                PercentageCut = 38,
+                id = 3
             };
             Hacker OldSchoolHacker = new Hacker
             {
                 Name = "Old School Hacker",
                 SkillLevel = 55,
-                PercentageCut = 5
+                PercentageCut = 5,
+                id = 4
             };
             Muscle MentallyTough = new Muscle
             {
                 Name = "Not Really All That Tough But Thinks He Is",
                 SkillLevel = 22,
-                PercentageCut = 90
+                PercentageCut = 90,
+                id = 5
             };
             LockSpecialist MacGyver = new LockSpecialist
             {
                 Name = "Fuckin MacGyver Dude",
                 SkillLevel = 99,
-                PercentageCut = 85
+                PercentageCut = 85,
+                id = 6
             };
             List<IRobber> rolodex = new List<IRobber>() {
                 CodingWiz, MuscleGuy, LockGuy, OldSchoolHacker, MentallyTough, MacGyver
@@ -76,6 +82,8 @@ namespace Heist
             
             **TOTAL CASH ON HAND**: ${heistVictim.CashOnHand.ToString("N0")}
             ");
+            Console.WriteLine();
+            PrintTeam();
 
             void PickTeam()
             {
@@ -146,7 +154,8 @@ namespace Heist
                         Hacker newMember = new Hacker() {
                             Name = memberName,
                             SkillLevel = memberSkill,
-                            PercentageCut = memberCut
+                            PercentageCut = memberCut,
+                            id = rolodex.Count + 1
                         };
                         rolodex.Add(newMember);
                     }
@@ -155,7 +164,8 @@ namespace Heist
                         LockSpecialist newMember = new LockSpecialist() {
                             Name = memberName,
                             SkillLevel = memberSkill,
-                            PercentageCut = memberCut
+                            PercentageCut = memberCut,
+                            id = rolodex.Count + 1
                         };
                         rolodex.Add(newMember);
                     }
@@ -164,12 +174,36 @@ namespace Heist
                         Muscle newMember = new Muscle() {
                             Name = memberName,
                             SkillLevel = memberSkill,
-                            PercentageCut = memberCut
+                            PercentageCut = memberCut,
+                            id = rolodex.Count + 1
                         };
                         rolodex.Add(newMember);
                     }
                 }
             }
+        
+        void PrintTeam()
+        {
+            Console.WriteLine();
+            Console.WriteLine("OK let's pick the lowlife scum that you'll try this heist with. Real cream of the crop here, huh! That's SARCASM by the way.");
+            Console.WriteLine();
+            foreach(IRobber robber in rolodex){
+                Console.WriteLine(@$"**ROBBER PROFILE**
+                
+                **NAME**: {robber.Name}
+
+                **ID NUMBER**: {robber.id}
+                
+                **SPECIALTY**: {robber.SpecialtyName}
+                
+                **SKILL LEVEL**: {robber.SkillLevel}
+                
+                **DESIRED CUT OF PAY**: {robber.PercentageCut}%
+                
+                **********************************************
+                ");
+            }
+        }
 
         }
     }

@@ -7,5 +7,6 @@ public interface IRobber
     int PercentageCut { get; set; }
     string SpecialtyName { get; }
     string SpecialtyDesc { get; }
+    int id { get ;}
     void PerformSkill(Bank bank);
 }
