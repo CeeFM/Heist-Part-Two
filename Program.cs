@@ -90,6 +90,12 @@ namespace Heist
             **TOTAL CASH ON HAND**: ${heistVictim.CashOnHand.ToString("N0")}
             ");
             Console.WriteLine();
+            Console.WriteLine("PRESS ENTER TO CONTINUE");
+            Console.ReadLine();
+                try
+                {Console.Clear();}
+                catch(Exception)
+                {}
             PickTeam();
             LetsHeist();
 
@@ -104,6 +110,10 @@ namespace Heist
                 int i = rolodex.Count;
                 string memberName = Console.ReadLine();
                 if (memberName == "") {
+                try
+                {Console.Clear();}
+                catch(Exception)
+                {}
                     break;
                 }
                 Console.WriteLine();
@@ -207,19 +217,15 @@ namespace Heist
             }
             Console.WriteLine("Let's pick the lowlife scum that you'll try this heist with. Real cream of the crop here, huh! That's SARCASM by the way.");
             Console.WriteLine();
+            Console.WriteLine("**ROBBER PROFILE**");
             foreach(IRobber robber in filteredRobbers){
-                Console.WriteLine(@$"**ROBBER PROFILE**
-                
+                Console.WriteLine(@$"
+                **********************************************
                 **NAME**: {robber.Name}
-
                 **ID NUMBER**: {robber.id}
-                
                 **SPECIALTY**: {robber.SpecialtyName}
-                
                 **SKILL LEVEL**: {robber.SkillLevel}
-                
                 **DESIRED CUT OF PAY**: {robber.PercentageCut}%
-                
                 **********************************************
                 ");
             }
@@ -230,6 +236,10 @@ namespace Heist
             int crewID = 0;
             if (userPick == "")
             {
+                try
+                {Console.Clear();}
+                catch(Exception)
+                {}
                 break;
             }
             else
@@ -257,11 +267,24 @@ namespace Heist
                 Console.WriteLine();
                 Console.WriteLine("BIG FAILURE! EVERYONE GOT BUSTED!! SOME PEOPLE ARE DEAD!!! PEOPLE DIED BECAUSE YOU WANTED MONEY LET THAT SINK IN!!!!");
                 Console.WriteLine();
+                Console.WriteLine("PRESS ENTER TO CONTINUE");
+                Console.ReadLine();
+                try
+                {Console.Clear();}
+                catch(Exception)
+                {}
             }
             else
             {
                 Console.WriteLine();
                 Console.WriteLine("HOLY MACARONI YOU DID YOU DONE ROBBED THE DANG JOINT FOR A BAZILLION GEORGIE WASHINGTONIANS BABYYYYYYY WOOOOOOO WE'RE INVINCIBLEEEEEEEEEEEEEEEEEEEEEEEEEEEEE WE'RE NEVER GONNA DIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                Console.WriteLine();
+                Console.WriteLine("PRESS ENTER TO CONTINUE");
+                Console.ReadLine();
+                try
+                {Console.Clear();}
+                catch(Exception)
+                {}
                 Console.WriteLine();
                 int heistCash = heistVictim.CashOnHand;
                 int yourHeistCash = heistCash;
