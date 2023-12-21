@@ -21,6 +21,9 @@ namespace Heist
             bankRatings.Add("Vault", heistVictim.VaultScore);
             bankRatings.Add("Security Guards", heistVictim.SecurityGuardScore);
             var sortedBankRatings = bankRatings.OrderBy(pair => pair.Value);
+            List<IRobber> crew = new List<IRobber>();
+
+
             Hacker CodingWiz = new Hacker
             {
                 Name = "Coding Genius",
@@ -184,8 +187,11 @@ namespace Heist
         
         void PrintTeam()
         {
+            bool trigger = false;
+            while (!trigger)
+            {
             Console.WriteLine();
-            Console.WriteLine("OK let's pick the lowlife scum that you'll try this heist with. Real cream of the crop here, huh! That's SARCASM by the way.");
+            Console.WriteLine("Let's pick the lowlife scum that you'll try this heist with. Real cream of the crop here, huh! That's SARCASM by the way.");
             Console.WriteLine();
             foreach(IRobber robber in rolodex){
                 Console.WriteLine(@$"**ROBBER PROFILE**
@@ -204,14 +210,24 @@ namespace Heist
                 ");
             }
             Console.WriteLine();
-            Console.WriteLine("Let's get your crew together. Look through the robber profiles above, and enter the ID number of a robber you want to add to your crew -->   ");
+            Console.WriteLine("Enter the ID number of a robber you want to add to your crew (or just press ENTER to start the HEIST PART TWO) -->   ");
             Console.WriteLine();
-            int crewID = Convert.ToInt32(Console.ReadLine());
-            List<IRobber> crew = new List<IRobber>();
+            string userPick = Console.ReadLine();
+            int crewID = 0;
+            if (userPick == "")
+            {
+                break;
+            }
+            else
+            {
+                crewID = Convert.ToInt32(userPick);
+            }
             crew.Add(rolodex.ElementAt(crewID - 1));
+            rolodex.RemoveAt(crewID - 1);
             Console.WriteLine();
-            Console.WriteLine($"OK great you have {crew.Count} members in your crew so far. Let's keep going.");
+            Console.WriteLine($"{crew.ElementAt(crew.Count - 1).Name} has been added to your crew! You have {crew.Count} members in your crew so far.");
             Console.WriteLine();
+            }
         }
 
         }
