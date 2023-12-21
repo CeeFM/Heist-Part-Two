@@ -197,7 +197,7 @@ namespace Heist
             {
             Console.WriteLine();
             int total = crew.Sum(a => a.PercentageCut);
-            IEnumerable<IRobber> filteredRobbers = rolodex.Where(robber => robber.PercentageCut + total < 100);
+            IEnumerable<IRobber> filteredRobbers = rolodex.Where(robber => robber.PercentageCut + total < 100 && !crew.Contains(robber));
             int count = filteredRobbers.Count();
             if(count == 0)
             {
@@ -237,8 +237,7 @@ namespace Heist
             {
                 crewID = Convert.ToInt32(userPick);
             }
-            crew.Add(rolodex.ElementAt(crewID - 1));
-            rolodex.RemoveAt(crewID - 1);
+            crew.Add(rolodex.First(a => a.id == Convert.ToInt32(userPick)));
             Console.WriteLine();
             Console.WriteLine($"{crew.ElementAt(crew.Count - 1).Name} has been added to your crew! You have {crew.Count} members in your crew so far.");
             Console.WriteLine();
