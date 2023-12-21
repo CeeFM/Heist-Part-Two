@@ -69,6 +69,10 @@ namespace Heist
             List<IRobber> rolodex = new List<IRobber>() {
                 CodingWiz, MuscleGuy, LockGuy, OldSchoolHacker, MentallyTough, MacGyver
             };
+            Console.WriteLine($@"
+            
+            
+            ");
             Console.WriteLine("WELCOME TO THE SECOND HEIST, THIS TIME IT GETS REAL REAL, NOT LIKE LAST TIME WHERE IT WAS EASY");
             Console.WriteLine();
             Console.WriteLine($"Let's open up the ol' rolodex of criminals. Looks like you've got {rolodex.Count} people in here at the moment.");
@@ -87,6 +91,7 @@ namespace Heist
             ");
             Console.WriteLine();
             PickTeam();
+            LetsHeist();
 
             void CreateTeam()
             {
@@ -237,6 +242,44 @@ namespace Heist
             Console.WriteLine();
             Console.WriteLine($"{crew.ElementAt(crew.Count - 1).Name} has been added to your crew! You have {crew.Count} members in your crew so far.");
             Console.WriteLine();
+            }
+        }
+
+        void LetsHeist()
+        {
+            foreach (IRobber robber in crew)
+            {
+                Console.WriteLine();                
+                robber.PerformSkill(heistVictim);
+                Console.WriteLine();
+            }
+
+            if (heistVictim.IsSecure)
+            {
+                Console.WriteLine();
+                Console.WriteLine("BIG FAILURE! EVERYONE GOT BUSTED!! SOME PEOPLE ARE DEAD!!! PEOPLE DIED BECAUSE YOU WANTED MONEY LET THAT SINK IN!!!!");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("HOLY MACARONI YOU DID YOU DONE ROBBED THE DANG JOINT FOR A BAZILLION GEORGIE WASHINGTONIANS BABYYYYYYY WOOOOOOO WE'RE INVINCIBLEEEEEEEEEEEEEEEEEEEEEEEEEEEEE WE'RE NEVER GONNA DIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                Console.WriteLine();
+                int heistCash = heistVictim.CashOnHand;
+                int yourHeistCash = heistCash;
+                foreach (IRobber robber in crew)
+                {
+                    double percentageCut = Convert.ToDouble(robber.PercentageCut);
+                    percentageCut = percentageCut / 100;
+                    double cut = Convert.ToDouble(heistCash) * percentageCut;
+                    Console.WriteLine();
+                    Console.WriteLine($"{robber.Name} gets {robber.PercentageCut}% of the bank's cash on hand - meaning they got a total cut of ${cut.ToString("N0")}.");
+                    Console.WriteLine();
+                    yourHeistCash = (yourHeistCash - Convert.ToInt32(cut));
+                    Console.WriteLine();
+                }
+                Console.WriteLine($"Which means you take home a whopping total of ${Convert.ToDouble(yourHeistCash).ToString("N0")}! Wow good for you! Crime pays!!!! SERIOUSLY!!!!");
+                
             }
         }
 
