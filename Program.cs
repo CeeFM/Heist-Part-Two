@@ -191,9 +191,19 @@ namespace Heist
             while (!trigger)
             {
             Console.WriteLine();
+            int total = crew.Sum(a => a.PercentageCut);
+            IEnumerable<IRobber> filteredRobbers = rolodex.Where(robber => robber.PercentageCut + total < 100);
+            int count = filteredRobbers.Count();
+            if(count == 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Looks like you ain't got any room left on your crew, all of the cuts of the cash have been claimed. NO TIME TO PREPARE ANYMORE, IT'S TIME TO MF'ING HEIST MY FRIEND");
+                Console.WriteLine();
+                break;
+            }
             Console.WriteLine("Let's pick the lowlife scum that you'll try this heist with. Real cream of the crop here, huh! That's SARCASM by the way.");
             Console.WriteLine();
-            foreach(IRobber robber in rolodex){
+            foreach(IRobber robber in filteredRobbers){
                 Console.WriteLine(@$"**ROBBER PROFILE**
                 
                 **NAME**: {robber.Name}
