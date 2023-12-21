@@ -72,7 +72,7 @@ namespace Heist
             Console.WriteLine("WELCOME TO THE SECOND HEIST, THIS TIME IT GETS REAL REAL, NOT LIKE LAST TIME WHERE IT WAS EASY");
             Console.WriteLine();
             Console.WriteLine($"Let's open up the ol' rolodex of criminals. Looks like you've got {rolodex.Count} people in here at the moment.");
-            PickTeam();
+            CreateTeam();
             Console.WriteLine();
             Console.WriteLine($"All done entering criminals for your little rolodex, huh? Already let's check the numbers again - looks like you've got {rolodex.Count} criminals in here at the moment.");
             Console.WriteLine();
@@ -86,9 +86,9 @@ namespace Heist
             **TOTAL CASH ON HAND**: ${heistVictim.CashOnHand.ToString("N0")}
             ");
             Console.WriteLine();
-            PrintTeam();
+            PickTeam();
 
-            void PickTeam()
+            void CreateTeam()
             {
                 bool ending = false;
                 while(!ending)
@@ -185,7 +185,7 @@ namespace Heist
                 }
             }
         
-        void PrintTeam()
+        void PickTeam()
         {
             bool trigger = false;
             while (!trigger)
